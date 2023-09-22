@@ -18,11 +18,11 @@ async def db_start():
         db.commit()
 
 
-async def insert_product(name, price, characteristics, photo):
+async def insert_product(category, name, price, characteristics, photo):
     with sq.connect("db/store.db") as db:
         cur = db.cursor()
         cur.execute(f"""
-        INSERT INTO phones(name, price, characteristics, photo) 
+        INSERT INTO {category}(name, price, characteristics, photo) 
         VALUES('{name}', {price}, '{characteristics}', '{photo}')
         """)
 
